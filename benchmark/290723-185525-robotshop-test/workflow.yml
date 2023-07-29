@@ -1,0 +1,47 @@
+app: robotshop
+flow:
+  - name: t5mx3
+    iter: 3
+    sleep: 10
+    args:
+      maxsize: 20mb
+      filters:
+        - dmon/network
+        - dmon/structure
+      redis:
+        ip: 0.0.0.0
+        port: 6379
+      wgen:
+        workload: ./workload/5m.yml
+        apispec: ../../apispec/robotshop.yml
+        day: 3.448s
+  - name: t30mx3
+    iter: 3
+    sleep: 10
+    args:
+      maxsize: 20mb
+      filters:
+        - dmon/network
+        - dmon/structure
+      redis:
+        ip: 0.0.0.0
+        port: 6379
+      wgen:
+        workload: ./workload/30m.yml
+        apispec: ../../apispec/robotshop.yml
+        day: 20.689s
+  - name: t1hx3
+    iter: 3
+    sleep: 10
+    args:
+      maxsize: 20mb
+      filters:
+        - dmon/network
+        - dmon/structure
+      redis:
+        ip: 0.0.0.0
+        port: 6379
+      wgen:
+        workload: ./workload/1h.yml
+        apispec: ../../apispec/robotshop.yml
+        day: 41.379s
