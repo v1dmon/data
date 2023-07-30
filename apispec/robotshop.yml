@@ -4,3 +4,9 @@ api:
   index_get:
     relativeUrl: /
     method: GET
+  api_cart_metrics_get:
+    relativeUrl: /api/cart/metrics
+    method: GET
+  api_payment_metrics_get:
+    relativeUrl: /api/payment/metrics
+    method: GET
