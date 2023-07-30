@@ -1,5 +1,6 @@
 args:
   api:
+  - index_get
   - catalogue_get_all
   - catalogue_get_size
   - tags_get_all

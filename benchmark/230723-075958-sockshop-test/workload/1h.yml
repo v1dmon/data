@@ -1,30 +1,30 @@
 workload:
 - day:
-    cards_get_all:
+    customers_get_all:
       rate: 4/s
 - day:
-    catalogue_get_all:
+    index_get:
       rate: 3/s
 - day:
-    customers_get_all:
+    tags_get_all:
       rate: 3/s
+- day:
+    tags_get_all:
+      rate: 4/s
 - day:
     customers_get_all:
       rate: 5/s
 - day:
-    cards_get_all:
+    index_get:
       rate: 6/s
 - day:
     catalogue_get_all:
       rate: 6/s
 - day:
-    catalogue_get_size:
+    tags_get_all:
       rate: 6/s
 - day:
-    customers_get_all:
-      rate: 6/s
-- day:
-    customers_get_all:
+    addresses_get_all:
       rate: 4/s
 - day:
     tags_get_all:
@@ -34,229 +34,229 @@ workload:
       rate: 6/s
 - day:
     catalogue_get_size:
-      rate: 9/s
-- day:
-    catalogue_get_all:
-      rate: 6/s
+      rate: 8/s
 - day:
     cards_get_all:
+      rate: 6/s
+- day:
+    addresses_get_all:
       rate: 7/s
 - day:
+    catalogue_get_all:
+      rate: 7/s
+- day:
+    index_get:
+      rate: 6/s
+- day:
     customers_get_all:
+      rate: 5/s
+- day:
+    tags_get_all:
+      rate: 5/s
+- day:
+    catalogue_get_size:
+      rate: 10/s
+- day:
+    index_get:
+      rate: 10/s
+- day:
+    catalogue_get_all:
+      rate: 8/s
+- day:
+    cards_get_all:
+      rate: 11/s
+- day:
+    catalogue_get_size:
+      rate: 8/s
+- day:
+    index_get:
       rate: 8/s
 - day:
     tags_get_all:
-      rate: 6/s
-- day:
-    catalogue_get_all:
-      rate: 5/s
-- day:
-    catalogue_get_size:
-      rate: 6/s
+      rate: 12/s
 - day:
     addresses_get_all:
-      rate: 10/s
+      rate: 14/s
+- day:
+    catalogue_get_all:
+      rate: 14/s
+- day:
+    customers_get_all:
+      rate: 15/s
+- day:
+    catalogue_get_size:
+      rate: 16/s
+- day:
+    tags_get_all:
+      rate: 12/s
 - day:
     tags_get_all:
       rate: 11/s
 - day:
-    catalogue_get_all:
-      rate: 9/s
-- day:
-    customers_get_all:
-      rate: 12/s
-- day:
     catalogue_get_size:
-      rate: 9/s
+      rate: 19/s
+- day:
+    addresses_get_all:
+      rate: 25/s
 - day:
     cards_get_all:
-      rate: 8/s
-- day:
-    tags_get_all:
-      rate: 13/s
-- day:
-    customers_get_all:
-      rate: 15/s
-- day:
-    customers_get_all:
-      rate: 15/s
-- day:
-    tags_get_all:
-      rate: 16/s
-- day:
-    addresses_get_all:
-      rate: 17/s
-- day:
-    tags_get_all:
-      rate: 12/s
-- day:
-    customers_get_all:
-      rate: 12/s
+      rate: 27/s
 - day:
     catalogue_get_size:
-      rate: 20/s
-- day:
-    addresses_get_all:
-      rate: 26/s
-- day:
-    tags_get_all:
       rate: 29/s
 - day:
-    addresses_get_all:
-      rate: 30/s
-- day:
     tags_get_all:
-      rate: 30/s
+      rate: 28/s
 - day:
-    catalogue_get_size:
+    catalogue_get_all:
+      rate: 19/s
+- day:
+    cards_get_all:
       rate: 20/s
 - day:
-    customers_get_all:
-      rate: 21/s
-- day:
     catalogue_get_size:
-      rate: 53/s
-- day:
-    customers_get_all:
-      rate: 73/s
-- day:
-    cards_get_all:
-      rate: 184/s
-- day:
-    customers_get_all:
-      rate: 191/s
-- day:
-    catalogue_get_all:
-      rate: 179/s
-- day:
-    cards_get_all:
-      rate: 86/s
-- day:
-    catalogue_get_all:
-      rate: 77/s
-- day:
-    catalogue_get_size:
-      rate: 212/s
-- day:
-    catalogue_get_size:
-      rate: 149/s
-- day:
-    catalogue_get_size:
-      rate: 138/s
-- day:
-    tags_get_all:
-      rate: 131/s
-- day:
-    cards_get_all:
-      rate: 123/s
-- day:
-    tags_get_all:
-      rate: 63/s
-- day:
-    catalogue_get_size:
-      rate: 63/s
-- day:
-    tags_get_all:
-      rate: 134/s
-- day:
-    addresses_get_all:
-      rate: 176/s
-- day:
-    cards_get_all:
-      rate: 178/s
-- day:
-    customers_get_all:
-      rate: 184/s
-- day:
-    customers_get_all:
-      rate: 251/s
-- day:
-    customers_get_all:
-      rate: 78/s
-- day:
-    catalogue_get_all:
-      rate: 70/s
-- day:
-    addresses_get_all:
-      rate: 227/s
-- day:
-    cards_get_all:
-      rate: 268/s
-- day:
-    tags_get_all:
-      rate: 104/s
-- day:
-    cards_get_all:
-      rate: 64/s
-- day:
-    catalogue_get_size:
-      rate: 162/s
-- day:
-    catalogue_get_size:
-      rate: 65/s
-- day:
-    customers_get_all:
-      rate: 47/s
-- day:
-    catalogue_get_size:
-      rate: 61/s
-- day:
-    catalogue_get_all:
-      rate: 146/s
-- day:
-    catalogue_get_all:
-      rate: 142/s
-- day:
-    customers_get_all:
-      rate: 64/s
-- day:
-    tags_get_all:
-      rate: 42/s
-- day:
-    cards_get_all:
-      rate: 33/s
-- day:
-    addresses_get_all:
       rate: 50/s
 - day:
-    catalogue_get_all:
-      rate: 81/s
-- day:
     cards_get_all:
-      rate: 33/s
-- day:
-    catalogue_get_all:
-      rate: 23/s
+      rate: 69/s
 - day:
     catalogue_get_size:
-      rate: 18/s
+      rate: 174/s
+- day:
+    catalogue_get_all:
+      rate: 181/s
+- day:
+    tags_get_all:
+      rate: 169/s
+- day:
+    addresses_get_all:
+      rate: 81/s
+- day:
+    addresses_get_all:
+      rate: 73/s
+- day:
+    catalogue_get_all:
+      rate: 200/s
+- day:
+    tags_get_all:
+      rate: 141/s
 - day:
     customers_get_all:
-      rate: 14/s
+      rate: 131/s
+- day:
+    tags_get_all:
+      rate: 124/s
+- day:
+    index_get:
+      rate: 116/s
+- day:
+    customers_get_all:
+      rate: 60/s
+- day:
+    index_get:
+      rate: 59/s
+- day:
+    catalogue_get_all:
+      rate: 127/s
+- day:
+    catalogue_get_all:
+      rate: 167/s
+- day:
+    catalogue_get_all:
+      rate: 168/s
+- day:
+    catalogue_get_size:
+      rate: 174/s
+- day:
+    customers_get_all:
+      rate: 238/s
+- day:
+    catalogue_get_size:
+      rate: 74/s
+- day:
+    addresses_get_all:
+      rate: 66/s
+- day:
+    catalogue_get_all:
+      rate: 215/s
+- day:
+    catalogue_get_size:
+      rate: 253/s
 - day:
     cards_get_all:
+      rate: 98/s
+- day:
+    customers_get_all:
+      rate: 60/s
+- day:
+    tags_get_all:
+      rate: 154/s
+- day:
+    tags_get_all:
+      rate: 62/s
+- day:
+    tags_get_all:
+      rate: 44/s
+- day:
+    index_get:
+      rate: 58/s
+- day:
+    cards_get_all:
+      rate: 138/s
+- day:
+    customers_get_all:
+      rate: 135/s
+- day:
+    catalogue_get_size:
+      rate: 60/s
+- day:
+    addresses_get_all:
+      rate: 39/s
+- day:
+    customers_get_all:
+      rate: 31/s
+- day:
+    catalogue_get_all:
+      rate: 47/s
+- day:
+    addresses_get_all:
+      rate: 77/s
+- day:
+    catalogue_get_all:
+      rate: 31/s
+- day:
+    tags_get_all:
+      rate: 22/s
+- day:
+    catalogue_get_all:
+      rate: 17/s
+- day:
+    index_get:
+      rate: 13/s
+- day:
+    index_get:
       rate: 9/s
 - day:
     tags_get_all:
       rate: 7/s
 - day:
-    cards_get_all:
-      rate: 10/s
-- day:
     catalogue_get_size:
       rate: 9/s
 - day:
-    catalogue_get_all:
-      rate: 8/s
-- day:
-    catalogue_get_all:
-      rate: 8/s
+    addresses_get_all:
+      rate: 9/s
 - day:
     customers_get_all:
+      rate: 8/s
+- day:
+    cards_get_all:
       rate: 7/s
 - day:
-    catalogue_get_size:
-      rate: 5/s
+    index_get:
+      rate: 6/s
 - day:
-    catalogue_get_size:
+    customers_get_all:
+      rate: 4/s
+- day:
+    addresses_get_all:
       rate: 4/s
