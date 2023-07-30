@@ -1,0 +1,6 @@
+args:
+  api:
+  - index_get
+  cut: 325.0
+  scale: 7000.0
+  seed: 10.0
