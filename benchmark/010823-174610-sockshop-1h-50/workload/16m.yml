@@ -1,0 +1,4 @@
+workload:
+- day:
+    customers_get_all:
+      rate: 64/s
