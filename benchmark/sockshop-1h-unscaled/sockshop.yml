@@ -1,0 +1,6 @@
+name: sockshop API
+baseUrl: http://localhost:80
+api:
+  index_get:
+    relativeUrl: /
+    method: GET
