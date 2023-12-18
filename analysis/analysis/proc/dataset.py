@@ -1,23 +1,10 @@
-from analysis.proc import fs
+from analysis.io import logfile
+from analysis.proc import frame
 import pandas as pd
 
 
-class Frame:
-    def __init__(self, **kwargs) -> None:
-        for key, data in kwargs.items():
-            setattr(self, key, pd.DataFrame(data))
-
-    def normalize(self, **kwargs):
-        for key, col in kwargs.items():
-            setattr(self, key, getattr(self, key).merge(pd.json_normalize(getattr(self, key)[col]), left_index=True, right_index=True))
-
-    def drop(self, **kwargs):
-        for key, cols in kwargs.items():
-            getattr(self, key).drop(columns=cols, inplace=True, errors="ignore")
-
-
 class DataSet:
-    def __init__(self, logfiles: list[fs.LogFile]) -> None:
+    def __init__(self, logfiles: list[logfile.LogFile]) -> None:
         networkGeneral = []
         structureHost = []
         structureNetwork = []
@@ -48,21 +35,15 @@ class DataSet:
                     elif subtype == "metrics":
                         httpMetrics.append(payload)
 
-        self.network = Frame(general=networkGeneral)
+        self.network = frame.Frame(general=networkGeneral)
         self.network.drop(general=["Type", "SubType"])
+        self.network.dtypes(general={"Timestamp": "datetime64[ns, UTC]", "TimeDelta": "float64"})
+        self.network.sortby(general="Timestamp")
 
-        self.structure = Frame(host=structureHost, network=structureNetwork, container=structureContainer)
+        self.structure = frame.Frame(host=structureHost, network=structureNetwork, container=structureContainer)
         self.structure.normalize(container="Stats")
         self.structure.drop(
-            host=[
-                "Type",
-                "SubType",
-                "OperatingSystem",
-                "OSType",
-                "Architecture",
-                "Name",
-                "KernelVersion",
-            ],
+            host=["Type", "SubType", "OperatingSystem", "OSType", "Architecture", "Name", "KernelVersion"],
             network=["Type", "SubType", "ID"],
             container=[
                 "Type",
@@ -87,8 +68,10 @@ class DataSet:
                 "PIDsLimit",
             ],
         )
+        self.structure.dtypes(container={"Timestamp": "datetime64[ns, UTC]", "CPUPercUsage": "float64", "MemoryPercUsage": "float64"})
+        self.structure.sortby(host="Timestamp", network="Timestamp", container="Timestamp")
 
-        self.http = Frame(result=httpResult, metrics=httpMetrics)
+        self.http = frame.Frame(result=httpResult, metrics=httpMetrics)
         self.http.normalize(metrics="latencies")
         self.http.drop(
             # TODO select columns to drop in http.result
@@ -113,3 +96,26 @@ class DataSet:
                 "min",
             ],
         )
+        self.http.rename(metrics={"mean": "Latency", "requests": "Requests", "rate": "Rate", "throughput": "Throughput", "success": "Success"})
+        self.http.dtypes(metrics={"Timestamp": "datetime64[ns, UTC]", "Throughput": "float64", "Latency": "int64"})
+        self.http.sortby(metrics="Timestamp")
+
+
+class MetricSet:
+    def __init__(self, data: DataSet) -> None:
+        om = getattr(data.network, "general")
+        self.timedelta = om[["Timestamp", "TimeDelta"]]
+
+        om = getattr(data.structure, "container")
+        self.cpuUsage = om[["Timestamp", "CPUPercUsage"]]
+        self.memoryUsage = om[["Timestamp", "MemoryPercUsage"]]
+
+        # TODO get latencies from http.result
+        # WARN enable http.result by default in experiments
+        om = getattr(data.http, "result")
+        if om.empty:
+            om = getattr(data.http, "metrics")
+        self.latency = om[["Timestamp", "Latency"]]
+
+        om = getattr(data.http, "metrics")
+        self.throughput = om[["Timestamp", "Throughput"]]
