@@ -2,41 +2,53 @@ import plotly.subplots as sp
 
 
 class Trace:
-    def __init__(self, o, **kw) -> None:
-        self.t = o(**kw)
-
-    def add(self, fig, r, c):
-        self.r, self.c = r, c
-        fig.add_trace(self.t, self.r, self.c)
-        # TODO set props
+    def __init__(self, graph_object, name, xaxis_props, yaxis_props, **kwargs) -> None:
+        self.row, self.col = 0, 0
+        self.name = name
+        self.xaxis_props, self.yaxis_props = xaxis_props, yaxis_props
+        self.go = graph_object(**kwargs)
 
 
 class Figure:
-    def __init__(self, cx, *to, **kw) -> None:
-        self.r, self.c = 1, 1
-        self.cx = cx
+    def __init__(self, cols, subplots_props, layout_props, **kwargs) -> None:
+        self.row, self.col = 1, 1
+        self.cols = cols
+        self._set(**kwargs)
 
-        self.to = to
-        self.n = len(self.to)
+        self.rows = ((self.nto // self.cols) + (self.nto % self.cols)) or 1
+        subplots_props["subplot_titles"] = [to.name for to in kwargs.values()]
+        self.figure = sp.make_subplots(self.rows, self.cols, **subplots_props)
 
-        self.rx = ((self.n // self.cx) + (self.n % self.cx)) or 1
+        self._add()
 
-        self.f = sp.make_subplots(self.rx, self.cx, **kw)
+        self._layout(**layout_props)
 
-        for o in self.to:
-            self._add(o)
+    def _set(self, **kwargs):
+        self.nto = len(kwargs)
+        self.to = []
+        for k, to in kwargs.items():
+            if not isinstance(to, Trace):
+                raise TypeError(f"{to.__class__} is not T")
+            setattr(self, k, to)
+            self.to.append(getattr(self, k))
 
-        # TODO update layout
-
-    def _add(self, to):
-        to.add(self.f, self.r, self.c)
-        self._next()
+    def _add(self):
+        for to in self.to:
+            to.row, to.col = self.row, self.col
+            self.figure.add_trace(to.go, self.row, self.col)
+            self._next()
 
     def _next(self):
-        self.c += 1
-        if self.c > self.cx:
-            self.c = 1
-            self.r += 1
+        self.col += 1
+        if self.col > self.cols:
+            self.col = 1
+            self.row += 1
+
+    def _layout(self, **kwargs):
+        for to in self.to:
+            self.figure.update_xaxes(to.xaxis_props, row=to.row, col=to.col)
+            self.figure.update_yaxes(to.yaxis_props, row=to.row, col=to.col)
+        self.figure.update_layout(**kwargs)
 
     def show(self):
-        self.f.show()
+        self.figure.show()

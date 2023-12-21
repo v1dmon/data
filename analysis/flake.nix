@@ -19,6 +19,10 @@
         POETRY_VIRTUALENVS_PATH = "./.venv";
         POETRY_VIRTUALENVS_PREFER_ACTIVE_PYTHON = "true";
       };
+      shellHook = ''
+        poetry install
+        poetry shell
+      '';
     };
   };
 }
