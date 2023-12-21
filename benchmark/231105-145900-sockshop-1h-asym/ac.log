@@ -1,0 +1,24 @@
+ac? cut: origin reading from ../../trace/karthik.trace
+ac: cut: origin lines (142166) [0.1625 0.1294 ... 0.0441 0.3464]
+ac: cut: origin elapsed 6300.051s
+ac? cut: cutting to 1h
+ac: cut: output lines (34188) [0.1625 0.1294 ... 0.0465 0.051 ]
+ac: cut: output elapsed 3600.020s
+ac? cut: output writing lines (34188) to <stdout>
+
+ac? zip: origin reading from <stdin>
+ac: zip: origin lines (34188) [0.1625 0.1294 ... 0.0465 0.051 ]
+ac: zip: origin elapsed 3600.020s
+ac? zip: scaling to 1h
+ac: zip: output lines (34188) [0.1625 0.1294 ... 0.0465 0.051 ]
+ac: zip: output elapsed 3600.000s
+ac? zip: output writing lines (34188) to ac.1h.unzip.trace
+
+ac? gen: origin reading from ac.1h.unzip.trace
+ac: gen: origin lines (34188) [0.1625 0.1294 ... 0.0465 0.051 ]
+ac: gen: origin elapsed 3600.000s
+ac? gen: emitting workload file
+ac? gen: using random with seed 10
+ac: gen: output extracting APIs from ../../apispec/sockshop.yml
+ac? gen: api pool ['index_get', 'catalogue_get_all', 'catalogue_get_size', 'tags_get_all', 'customers_get_all', 'cards_get_all', 'addresses_get_all']
+ac? gen: output writing yaml to work.1h.unzip.yaml
