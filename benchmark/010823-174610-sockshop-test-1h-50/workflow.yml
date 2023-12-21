@@ -1,0 +1,32 @@
+app: sockshop
+flow:
+  - name: t1mx3s50
+    iter: 3
+    sleep: 10
+    args:
+      maxsize: 20mb
+      filters:
+        - dmon/network
+        - dmon/structure
+      redis:
+        ip: 0.0.0.0
+        port: 6379
+      wgen:
+        workload: ./workload/1m.yml
+        apispec: ../../apispec/sockshop.yml
+        day: 1m
+  - name: t1hx3s50
+    iter: 3
+    sleep: 10
+    args:
+      maxsize: 20mb
+      filters:
+        - dmon/network
+        - dmon/structure
+      redis:
+        ip: 0.0.0.0
+        port: 6379
+      wgen:
+        workload: ./workload/1h.yml
+        apispec: ../../apispec/sockshop.yml
+        day: 1h
