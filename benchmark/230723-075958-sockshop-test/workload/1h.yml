@@ -1,0 +1,262 @@
+workload:
+- day:
+    cards_get_all:
+      rate: 4/s
+- day:
+    catalogue_get_all:
+      rate: 3/s
+- day:
+    customers_get_all:
+      rate: 3/s
+- day:
+    customers_get_all:
+      rate: 5/s
+- day:
+    cards_get_all:
+      rate: 6/s
+- day:
+    catalogue_get_all:
+      rate: 6/s
+- day:
+    catalogue_get_size:
+      rate: 6/s
+- day:
+    customers_get_all:
+      rate: 6/s
+- day:
+    customers_get_all:
+      rate: 4/s
+- day:
+    tags_get_all:
+      rate: 3/s
+- day:
+    addresses_get_all:
+      rate: 6/s
+- day:
+    catalogue_get_size:
+      rate: 9/s
+- day:
+    catalogue_get_all:
+      rate: 6/s
+- day:
+    cards_get_all:
+      rate: 7/s
+- day:
+    customers_get_all:
+      rate: 8/s
+- day:
+    tags_get_all:
+      rate: 6/s
+- day:
+    catalogue_get_all:
+      rate: 5/s
+- day:
+    catalogue_get_size:
+      rate: 6/s
+- day:
+    addresses_get_all:
+      rate: 10/s
+- day:
+    tags_get_all:
+      rate: 11/s
+- day:
+    catalogue_get_all:
+      rate: 9/s
+- day:
+    customers_get_all:
+      rate: 12/s
+- day:
+    catalogue_get_size:
+      rate: 9/s
+- day:
+    cards_get_all:
+      rate: 8/s
+- day:
+    tags_get_all:
+      rate: 13/s
+- day:
+    customers_get_all:
+      rate: 15/s
+- day:
+    customers_get_all:
+      rate: 15/s
+- day:
+    tags_get_all:
+      rate: 16/s
+- day:
+    addresses_get_all:
+      rate: 17/s
+- day:
+    tags_get_all:
+      rate: 12/s
+- day:
+    customers_get_all:
+      rate: 12/s
+- day:
+    catalogue_get_size:
+      rate: 20/s
+- day:
+    addresses_get_all:
+      rate: 26/s
+- day:
+    tags_get_all:
+      rate: 29/s
+- day:
+    addresses_get_all:
+      rate: 30/s
+- day:
+    tags_get_all:
+      rate: 30/s
+- day:
+    catalogue_get_size:
+      rate: 20/s
+- day:
+    customers_get_all:
+      rate: 21/s
+- day:
+    catalogue_get_size:
+      rate: 53/s
+- day:
+    customers_get_all:
+      rate: 73/s
+- day:
+    cards_get_all:
+      rate: 184/s
+- day:
+    customers_get_all:
+      rate: 191/s
+- day:
+    catalogue_get_all:
+      rate: 179/s
+- day:
+    cards_get_all:
+      rate: 86/s
+- day:
+    catalogue_get_all:
+      rate: 77/s
+- day:
+    catalogue_get_size:
+      rate: 212/s
+- day:
+    catalogue_get_size:
+      rate: 149/s
+- day:
+    catalogue_get_size:
+      rate: 138/s
+- day:
+    tags_get_all:
+      rate: 131/s
+- day:
+    cards_get_all:
+      rate: 123/s
+- day:
+    tags_get_all:
+      rate: 63/s
+- day:
+    catalogue_get_size:
+      rate: 63/s
+- day:
+    tags_get_all:
+      rate: 134/s
+- day:
+    addresses_get_all:
+      rate: 176/s
+- day:
+    cards_get_all:
+      rate: 178/s
+- day:
+    customers_get_all:
+      rate: 184/s
+- day:
+    customers_get_all:
+      rate: 251/s
+- day:
+    customers_get_all:
+      rate: 78/s
+- day:
+    catalogue_get_all:
+      rate: 70/s
+- day:
+    addresses_get_all:
+      rate: 227/s
+- day:
+    cards_get_all:
+      rate: 268/s
+- day:
+    tags_get_all:
+      rate: 104/s
+- day:
+    cards_get_all:
+      rate: 64/s
+- day:
+    catalogue_get_size:
+      rate: 162/s
+- day:
+    catalogue_get_size:
+      rate: 65/s
+- day:
+    customers_get_all:
+      rate: 47/s
+- day:
+    catalogue_get_size:
+      rate: 61/s
+- day:
+    catalogue_get_all:
+      rate: 146/s
+- day:
+    catalogue_get_all:
+      rate: 142/s
+- day:
+    customers_get_all:
+      rate: 64/s
+- day:
+    tags_get_all:
+      rate: 42/s
+- day:
+    cards_get_all:
+      rate: 33/s
+- day:
+    addresses_get_all:
+      rate: 50/s
+- day:
+    catalogue_get_all:
+      rate: 81/s
+- day:
+    cards_get_all:
+      rate: 33/s
+- day:
+    catalogue_get_all:
+      rate: 23/s
+- day:
+    catalogue_get_size:
+      rate: 18/s
+- day:
+    customers_get_all:
+      rate: 14/s
+- day:
+    cards_get_all:
+      rate: 9/s
+- day:
+    tags_get_all:
+      rate: 7/s
+- day:
+    cards_get_all:
+      rate: 10/s
+- day:
+    catalogue_get_size:
+      rate: 9/s
+- day:
+    catalogue_get_all:
+      rate: 8/s
+- day:
+    catalogue_get_all:
+      rate: 8/s
+- day:
+    customers_get_all:
+      rate: 7/s
+- day:
+    catalogue_get_size:
+      rate: 5/s
+- day:
+    catalogue_get_size:
+      rate: 4/s

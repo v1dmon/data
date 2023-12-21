@@ -1,0 +1,11 @@
+args:
+  api:
+  - catalogue_get_all
+  - catalogue_get_size
+  - tags_get_all
+  - customers_get_all
+  - cards_get_all
+  - addresses_get_all
+  cut: 325.0
+  scale: 7000.0
+  seed: 10.0
