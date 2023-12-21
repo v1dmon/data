@@ -1,0 +1,16 @@
+ac? zip: origin reading from ../231105-145900-sockshop-1h-asym/ac.1h.unzip.trace
+ac: zip: origin lines (34188) [0.1625 0.1294 ... 0.0465 0.051 ]
+ac: zip: origin elapsed 3600.000s
+ac? zip: scaling to 30m
+ac: zip: output lines (34188) [0.0813 0.0647 ... 0.0232 0.0255]
+ac: zip: output elapsed 1800.000s
+ac? zip: output writing lines (34188) to ac.30m.zip.trace
+
+ac? gen: origin reading from ac.30m.zip.trace
+ac: gen: origin lines (34188) [0.0813 0.0647 ... 0.0232 0.0255]
+ac: gen: origin elapsed 1800.000s
+ac? gen: emitting workload file
+ac? gen: using random with seed 10
+ac: gen: output extracting APIs from ../../apispec/sockshop.yml
+ac? gen: api pool ['index_get', 'catalogue_get_all', 'catalogue_get_size', 'tags_get_all', 'customers_get_all', 'cards_get_all', 'addresses_get_all']
+ac? gen: output writing yaml to work.30m.zip.trace
