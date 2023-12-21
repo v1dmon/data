@@ -1,8 +1,0 @@
-args:
-  api:
-  - index_get
-  - api_cart_metrics_get
-  - api_payment_metrics_get
-  cut: 325.0
-  scale: 7000.0
-  seed: 10.0
