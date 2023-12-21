@@ -8,7 +8,7 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
-        python3
+        python311
         poetry
       ];
       env = {
