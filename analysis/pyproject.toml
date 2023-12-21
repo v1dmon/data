@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "xa"
+version = "0.1.0"
+description = ""
+authors = ["resu <9valentino4@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.0.3"
+plotly = "^5.15.0"
+kaleido = "0.2.1"
+jupyter = "^1.0.0"
+matplotlib = "^3.8.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 150
