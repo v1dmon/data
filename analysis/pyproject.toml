@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "analysis"
+name = "xa"
 version = "0.1.0"
 description = ""
 authors = ["resu-gh <9valentino4@gmail.com>"]

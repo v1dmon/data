@@ -10,7 +10,7 @@ class Frame:
         for key, map in kwargs.items():
             setattr(self, key, getattr(self, key).astype(map))
 
-    def sortby(self, **kwargs):
+    def sortBy(self, **kwargs):
         for key, col in kwargs.items():
             setattr(self, key, getattr(self, key).sort_values(col))
 
