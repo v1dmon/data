@@ -1,18 +1,16 @@
 from xa.proc import ds, frame
 
 from enum import Enum
+import pandas as pd
 
 
-class _timedelta(Enum):
+class _time(Enum):
     select = ["Timestamp", "TimeDelta"]
-    renames = {
-        "Timestamp": "TS",
-        "TimeDelta": "V",
-    }
+    renames = {"Timestamp": "TS", "TimeDelta": "V"}
 
 
-class tcpstream:
-    timedelta = _timedelta
+class response:
+    time = _time
 
 
 class _cpuusage(Enum):
@@ -60,8 +58,8 @@ class Set:
         if hr.empty:
             hr = hm
 
-        self.tcpstream = frame.Frame(timedelta=ng[tcpstream.timedelta.select.value])
-        self.tcpstream.rename(timedelta=tcpstream.timedelta.renames.value)
+        self.response = frame.Frame(time=ng[response.time.select.value])
+        self.response.rename(time=response.time.renames.value)
 
         self.cpu = frame.Frame(usage=sc[cpu.usage.select.value])
         self.cpu.rename(usage=cpu.usage.renames.value)
@@ -71,3 +69,13 @@ class Set:
 
         self.request = frame.Frame(latency=hr[request.latency.select.value], throughput=hm[request.throughput.select.value])
         self.request.rename(latency=request.latency.renames.value, throughput=request.throughput.renames.value)
+
+        self.stats = self._describe()
+
+    def _describe(self):
+        cu = getattr(self.cpu, "usage").describe().rename(dict(V="cpu usage"), axis=1).T
+        mu = getattr(self.memory, "usage").describe().rename(dict(V="memory usage"), axis=1).T
+        rql = getattr(self.request, "latency").describe().rename(dict(V="request latency"), axis=1).T
+        rqt = getattr(self.request, "throughput").describe().rename(dict(V="request throughput"), axis=1).T
+        rst = getattr(self.response, "time").describe().rename(dict(V="response time"), axis=1).T
+        return pd.concat([cu, mu, rql, rqt, rst])

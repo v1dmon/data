@@ -7,10 +7,7 @@ from enum import Enum
 
 class _general(Enum):
     drops = ["Type", "SubType"]
-    dtypes = {
-        "Timestamp": "datetime64[ns, UTC]",
-        "TimeDelta": "float64",
-    }
+    dtypes = {"Timestamp": "datetime64[ns, UTC]", "TimeDelta": "float64"}
 
 
 class network:
@@ -18,15 +15,7 @@ class network:
 
 
 class _host(Enum):
-    drops = [
-        "Type",
-        "SubType",
-        "OperatingSystem",
-        "OSType",
-        "Architecture",
-        "Name",
-        "KernelVersion",
-    ]
+    drops = ["Type", "SubType", "OperatingSystem", "OSType", "Architecture", "Name", "KernelVersion"]
 
 
 class _network(Enum):
@@ -56,11 +45,7 @@ class _container(Enum):
         "PIDsCurrent",
         "PIDsLimit",
     ]
-    dtypes = {
-        "Timestamp": "datetime64[ns, UTC]",
-        "CPUPercUsage": "float64",
-        "MemoryPercUsage": "float64",
-    }
+    dtypes = {"Timestamp": "datetime64[ns, UTC]", "CPUPercUsage": "float64", "MemoryPercUsage": "float64"}
 
 
 class structure:
@@ -93,18 +78,8 @@ class _metrics(Enum):
         "max",
         "min",
     ]
-    dtypes = {
-        "Timestamp": "datetime64[ns, UTC]",
-        "Throughput": "float64",
-        "Latency": "int64",
-    }
-    renames = {
-        "mean": "Latency",
-        "requests": "Requests",
-        "rate": "Rate",
-        "throughput": "Throughput",
-        "success": "Success",
-    }
+    dtypes = {"Timestamp": "datetime64[ns, UTC]", "Throughput": "float64", "Latency": "int64"}
+    renames = {"mean": "Latency", "requests": "Requests", "rate": "Rate", "throughput": "Throughput", "success": "Success"}
 
 
 class http:
@@ -113,55 +88,42 @@ class http:
 
 
 class Set:
-    def __init__(self, logfiles: list[src.Log]) -> None:
-        networkGeneral = []
-        structureHost = []
-        structureNetwork = []
-        structureContainer = []
-        httpResult = []
-        httpMetrics = []
+    def __init__(self, lf: list[src.Log]) -> None:
+        ng, sh, sn, sc, hr, hm = [], [], [], [], [], []
 
-        for log in logfiles:
-            for payload in log.content:
-                type = payload["Type"]
-                subtype = payload["SubType"]
+        for f in lf:
+            for pl in f.content:
+                t = pl["Type"]
+                st = pl["SubType"]
 
-                if type == "network":
-                    if subtype == "general":
-                        networkGeneral.append(payload)
-                elif type == "structure":
-                    if subtype == "host":
-                        structureHost.append(payload)
-                    elif subtype == "network":
-                        structureNetwork.append(payload)
-                    elif subtype == "container":
-                        structureContainer.append(payload)
-                elif type == "http":
-                    if subtype == "result":
-                        httpResult.append(payload)
-                    elif subtype == "metrics":
-                        httpMetrics.append(payload)
+                if t == "network":
+                    if st == "general":
+                        ng.append(pl)
+                elif t == "structure":
+                    if st == "host":
+                        sh.append(pl)
+                    elif st == "network":
+                        sn.append(pl)
+                    elif st == "container":
+                        sc.append(pl)
+                elif t == "http":
+                    if st == "result":
+                        hr.append(pl)
+                    elif st == "metrics":
+                        hm.append(pl)
 
-        self.network = frame.Frame(general=networkGeneral)
+        self.network = frame.Frame(general=ng)
         self.network.drop(general=network.general.drops.value)
         self.network.dtypes(general=network.general.dtypes.value)
         self.network.sortBy(general="Timestamp")
 
-        self.structure = frame.Frame(
-            host=structureHost,
-            network=structureNetwork,
-            container=structureContainer,
-        )
+        self.structure = frame.Frame(host=sh, network=sn, container=sc)
         self.structure.normalize(container="Stats")
-        self.structure.drop(
-            host=structure.host.drops.value,
-            network=structure.network.drops.value,
-            container=structure.container.drops.value,
-        )
+        self.structure.drop(host=structure.host.drops.value, network=structure.network.drops.value, container=structure.container.drops.value)
         self.structure.dtypes(container=structure.container.dtypes.value)
         self.structure.sortBy(host="Timestamp", network="Timestamp", container="Timestamp")
 
-        self.http = frame.Frame(result=httpResult, metrics=httpMetrics)
+        self.http = frame.Frame(result=hr, metrics=hm)
         self.http.normalize(metrics="latencies")
         self.http.drop(result=http.result.drops.value, metrics=http.metrics.drops.value)
         self.http.rename(metrics=http.metrics.renames.value)
