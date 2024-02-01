@@ -40,7 +40,7 @@ class Experiment:
         for k in keys:
             means = list(self.stats.loc[idx[:, k], idx["mean"]])
             df.loc[k, "mean of means"] = np.mean(means)
-            df.loc[k, "biased population std of means"] = np.std(means)
-            df.loc[k, "unbiased sample std of means"] = np.std(means, ddof=1)
+            df.loc[k, "std of means bias"] = np.std(means)
+            df.loc[k, "std of means unbias"] = np.std(means, ddof=1)
 
         return df

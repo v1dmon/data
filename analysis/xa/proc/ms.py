@@ -76,48 +76,48 @@ class Set:
 
     def _stats(self):
         m = getattr(self.cpu, "usage")
-        cu = m.describe().rename(index=dict(std="unbiased sample std"), columns=dict(V="cpu usage")).T
-        cu.insert(2, "biased population std", m.V.std(ddof=0))
-        cu["95% confidence interval"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
-        cu["99% confidence interval"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
+        cu = m.describe().rename(index=dict(std="std unbias"), columns=dict(V="cpu usage")).T
+        cu.insert(2, "std bias", m.V.std(ddof=0))
+        cu["ci 95%"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
+        cu["ci 99%"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
         # cu.columns = [[""] * len(cu.columns), cu.columns]
-        # cu[[("confidence interval", "95% +"), ("confidence interval", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
-        # cu[[("confidence interval", "99% +"), ("confidence interval", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
+        # cu[[("ci", "95% +"), ("ci", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
+        # cu[[("ci", "99% +"), ("ci", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
 
         m = getattr(self.memory, "usage")
-        mu = m.describe().rename(index=dict(std="unbiased sample std"), columns=dict(V="memory usage")).T
-        mu.insert(2, "biased population std", m.V.std(ddof=0))
-        mu["95% confidence interval"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
-        mu["99% confidence interval"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
+        mu = m.describe().rename(index=dict(std="std unbias"), columns=dict(V="memory usage")).T
+        mu.insert(2, "std bias", m.V.std(ddof=0))
+        mu["ci 95%"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
+        mu["ci 99%"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
         # mu.columns = [[""] * len(mu.columns), mu.columns]
-        # mu[[("confidence interval", "95% +"), ("confidence interval", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
-        # mu[[("confidence interval", "99% +"), ("confidence interval", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
+        # mu[[("ci", "95% +"), ("ci", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
+        # mu[[("ci", "99% +"), ("ci", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
 
         m = getattr(self.request, "latency")
-        rql = m.describe().rename(index=dict(std="unbiased sample std"), columns=dict(V="request latency")).T
-        rql.insert(2, "biased population std", m.V.std(ddof=0))
-        rql["95% confidence interval"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
-        rql["99% confidence interval"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
+        rql = m.describe().rename(index=dict(std="std unbias"), columns=dict(V="request latency")).T
+        rql.insert(2, "std bias", m.V.std(ddof=0))
+        rql["ci 95%"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
+        rql["ci 99%"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
         # rql.columns = [[""] * len(rql.columns), rql.columns]
-        # rql[[("confidence interval", "95% +"), ("confidence interval", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
-        # rql[[("confidence interval", "99% +"), ("confidence interval", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
+        # rql[[("ci", "95% +"), ("ci", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
+        # rql[[("ci", "99% +"), ("ci", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
 
         m = getattr(self.request, "throughput")
-        rqt = m.describe().rename(index=dict(std="unbiased sample std"), columns=dict(V="request throughput")).T
-        rqt.insert(2, "biased population std", m.V.std(ddof=0))
-        rqt["95% confidence interval"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
-        rqt["99% confidence interval"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
+        rqt = m.describe().rename(index=dict(std="std unbias"), columns=dict(V="request throughput")).T
+        rqt.insert(2, "std bias", m.V.std(ddof=0))
+        rqt["ci 95%"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
+        rqt["ci 99%"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
         # rqt.columns = [[""] * len(rqt.columns), rqt.columns]
-        # rqt[[("confidence interval", "95% +"), ("confidence interval", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
-        # rqt[[("confidence interval", "99% +"), ("confidence interval", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
+        # rqt[[("ci", "95% +"), ("ci", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
+        # rqt[[("ci", "99% +"), ("ci", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
 
         m = getattr(self.response, "time")
-        rst = m.describe().rename(index=dict(std="unbiased sample std"), columns=dict(V="response time")).T
-        rst.insert(2, "biased population std", m.V.std(ddof=0))
-        rst["95% confidence interval"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
-        rst["99% confidence interval"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
+        rst = m.describe().rename(index=dict(std="std unbias"), columns=dict(V="response time")).T
+        rst.insert(2, "std bias", m.V.std(ddof=0))
+        rst["ci 95%"] = [st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.sem())]
+        rst["ci 99%"] = [st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.sem())]
         # rst.columns = [[""] * len(rst.columns), rst.columns]
-        # rst[[("confidence interval", "95% +"), ("confidence interval", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
-        # rst[[("confidence interval", "99% +"), ("confidence interval", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
+        # rst[[("ci", "95% +"), ("ci", "95% -")]] = st.norm.interval(confidence=0.95, loc=m.V.mean(), scale=m.V.std())
+        # rst[[("ci", "99% +"), ("ci", "99% -")]] = st.norm.interval(confidence=0.99, loc=m.V.mean(), scale=m.V.std())
 
         return pd.concat([cu, mu, rql, rqt, rst])
