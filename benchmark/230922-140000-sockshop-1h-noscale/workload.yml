@@ -1,4 +1,0 @@
-workload:
-- day:
-    index_get:
-      rate: 9/s

@@ -1,4 +1,0 @@
-workload:
-- day:
-    customers_get_all:
-      rate: 509/s
