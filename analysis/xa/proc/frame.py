@@ -25,3 +25,14 @@ class Frame:
     def rename(self, **kwargs):
         for key, map in kwargs.items():
             setattr(self, key, getattr(self, key).rename(columns=map))
+
+    def iqrclean(self, **kwargs):
+        for key1, map in kwargs.items():
+            for key2, threshold in map.items():
+                df = getattr(self, key1)
+                v = getattr(df, key2)
+                q1 = v.quantile(0.25)
+                q3 = v.quantile(0.75)
+                iqr = q3 - q1
+                outliers = df[(v < (q1 - threshold * iqr)) | (v > (q3 + threshold * iqr))]
+                setattr(self, key1, df.drop(outliers.index))

@@ -78,7 +78,7 @@ class _metrics(Enum):
         "max",
         "min",
     ]
-    dtypes = {"Timestamp": "datetime64[ns, UTC]", "Throughput": "float64", "Latency": "int64"}
+    dtypes = {"Timestamp": "datetime64[ns, UTC]", "Throughput": "float64", "Latency": "timedelta64[ns]"}
     renames = {"mean": "Latency", "requests": "Requests", "rate": "Rate", "throughput": "Throughput", "success": "Success"}
 
 
@@ -129,3 +129,5 @@ class Set:
         self.http.rename(metrics=http.metrics.renames.value)
         self.http.dtypes(metrics=http.metrics.dtypes.value)
         self.http.sortBy(metrics="Timestamp")
+
+        getattr(self.http, "metrics").Latency = getattr(self.http, "metrics").Latency.dt.total_seconds()

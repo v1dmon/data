@@ -27,7 +27,7 @@ class Experiment:
 
     def _stats(self):
         v = [f.metric.stats for f in self.i]
-        k = [j for j in self.__dict__ if j not in ["name", "i"]]
+        k = [j for j in self.__dict__ if j not in ["name", "i", "stats", "summary"]]
         df = pd.concat(v, keys=k)
         df.index.names = ["iter", "stat"]
         return df
@@ -44,3 +44,16 @@ class Experiment:
             df.loc[k, "std of means unbias"] = np.std(means, ddof=1)
 
         return df
+
+    def _restats(self):
+        for f in self.i:
+            f.metric._restats()
+
+        self.stats = self._stats()
+        self.summary = self._summary()
+
+    def iqrclean(self, cuT, muT, rqlT, rqtT, rstT):
+        for f in self.i:
+            f.metric._iqrclean(cuT, muT, rqlT, rqtT, rstT)
+
+        self._restats()
